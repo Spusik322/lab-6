@@ -5,11 +5,12 @@
             "label": "C/C++: g++.exe сборка активного файла",
             "command": "C:\\msys64\\mingw64\\bin\\g++.exe",
             "args": [
-                "-fdiagnostics-color=always",
                 "-g",
-                "${file}",
+                "${fileDirname}\\**.cpp",
+                //"${fileDirname}\\**.h",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}.exe",
+                "-fdiagnostics-color=always",
             ],
             "options": {
                 "cwd": "${fileDirname}"
