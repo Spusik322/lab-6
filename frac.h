@@ -13,27 +13,9 @@ public:
     int denominator;  
 
     frac() = delete;
-    frac(int _numerator, int _denominator) 
-    {
-        this->numerator = _numerator;
-        _denominator = denominator0(_denominator);
-        this->denominator = _denominator;
-        this->sign();
-        this->reduction();
-    }
-    frac(const frac& other)
-    {   
-        this->numerator = other.numerator;
-        this->denominator = other.denominator;
-    }
-    int denominator0(int denominator) 
-    {
-        while(denominator == 0){
-            std::cout << "Знаменатель не может быть равен 0" << std::endl;
-            std::cin >> denominator;
-        }
-        return denominator;
-    }
+    frac(int _numerator, int _denominator);
+    frac(const frac& other);
+    int denominator0(int denominator);
     int whole_part(int numerator, int denomirator)
     {
         return (numerator / denominator);
