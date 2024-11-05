@@ -27,7 +27,7 @@ int frac::whole_part(int numerator, int denomirator)
 }
 frac frac::sign()
 {
-    if ((numerator >= 0 && denominator < 0) || (numerator <= 0 && denominator > 0))
+    if ((numerator * denominator < 0))
     {
         numerator = -abs(numerator);
         denominator = abs(denominator);
@@ -145,7 +145,8 @@ void frac::printfrac ()
     }
 }
 int frac::getnumerator()
-{
+{   
+    numerator = numerator % denominator;
     return numerator;
 }
 int frac::getdenominator()
