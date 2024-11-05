@@ -44,5 +44,7 @@ int main()
     (2 * f2).printfrac();
     cout << endl;
     (2 / f2).printfrac();
+    cout << endl;
+    cout << f1.getwholepart() << ' ' << f2.getwholepart();
     return 0;
 }

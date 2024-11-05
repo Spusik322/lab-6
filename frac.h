@@ -56,7 +56,7 @@ public:
         {
         int numerator1 = abs(numerator);
         int denominator1 = abs(denominator);
-        while ((numerator1 != denominator1) && (numerator1 != 0) && (numerator1 != 1))
+        while (numerator1 != denominator1)
         {
             if (numerator1 > denominator1)
             {
@@ -217,7 +217,7 @@ frac operator+(const int &a, frac &b)
 }
 frac operator-(const int &a, frac &b)
 {
-    frac c = frac(b.getnumerator() - b.getdenominator() * a, b.getdenominator());
+    frac c = frac(b.getdenominator() * a - b.getnumerator(), b.getdenominator());
     return c.reduction();
 }
 frac operator*(const int &a, frac &b)
@@ -227,6 +227,6 @@ frac operator*(const int &a, frac &b)
 }
 frac operator/(const int &a, frac &b)
 {
-    frac c = frac(b.getnumerator(), b.getdenominator() * a);
+    frac c = frac(b.getdenominator() * a, b.getnumerator());
     return c.reduction();
 }
