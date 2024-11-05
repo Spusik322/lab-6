@@ -12,11 +12,207 @@ frac::frac(const frac& other)
     this->numerator = other.numerator;
     this->denominator = other.denominator;
 }
-int denominator0(int denominator) 
+int frac::denominator0(int denominator)
 {
-    while(denominator == 0){
-        std::cout << "Знаменатель не может быть равен 0" << std::endl;
-        std::cin >> denominator;
+    while(denominator == 0)
+    {
+    std::cout << "Знаменатель не может быть равен 0" << std::endl;
+    std::cin >> denominator;
     }
     return denominator;
+}
+int frac::whole_part(int numerator, int denomirator)
+{
+    return (numerator / denominator);
+}
+frac frac::sign()
+{
+    if ((numerator >= 0 && denominator < 0) || (numerator <= 0 && denominator > 0))
+    {
+        numerator = -abs(numerator);
+        denominator = abs(denominator);
+        return *this;
+    }
+    numerator = abs(numerator);
+    denominator = abs(denominator);
+    return *this;
+}
+frac frac::reduction()
+{
+    if (numerator != 0)
+    {
+    int numerator1 = abs(numerator);
+    int denominator1 = abs(denominator);
+    while (numerator1 != denominator1)
+    {
+        if (numerator1 > denominator1)
+        {
+            numerator1 -= denominator1;
+        } 
+        else
+        {
+            denominator1 -= numerator1;
+        }
+    }
+    numerator = numerator / numerator1;
+    denominator = denominator / denominator1;
+    }
+    return *this;
+}
+void frac::printfrac ()
+{
+    if (numerator == 0)
+    {
+        std::cout << 0 << std::endl;
+    }
+    if (denominator == 1)
+    {
+        std::cout << numerator << std::endl;
+    }
+    if ((numerator < 0) && (denominator != 1))
+    {
+        int flag = 0;
+        if (abs(numerator) > abs(denominator))
+        {
+            int numerator1 = abs(numerator);
+            while(numerator1 > 0)
+            {
+                numerator1 /= 10;
+                flag++;
+            }
+            std::cout << ' ' << ' ' << abs(numerator) << std::endl;
+            std::cout << '-' << ' ';
+            for (int i = 0; i < flag; i++)
+            {
+                std::cout << '-';
+            }
+            std::cout << std::endl;
+            std::cout << ' ' << ' ' << denominator << std::endl;
+        }
+        else
+        {
+            int denominator1 = abs(denominator);
+            while(denominator1 > 0)
+            {
+                denominator1 /= 10;
+                flag++;
+            }
+            std::cout << ' ' << abs(numerator) << std::endl;
+            std::cout << '-';
+            for (int i = 0; i < flag; i++)
+            {
+                std::cout << '-';
+            }
+            std::cout << std::endl;
+            std::cout << ' ' << denominator << std::endl;
+        }
+    } 
+    if ((numerator > 0) && (denominator != 1)) 
+    {
+        int flag = 0;
+        if (abs(numerator) > abs(denominator))
+        {
+            int numerator1 = abs(numerator);
+            while(numerator1 > 0)
+            {
+                numerator1 /= 10;
+                flag++;
+            }
+            std::cout << numerator << std::endl;
+            for (int i = 0; i < flag; i++)
+            {
+                std::cout << '-';
+            }
+            std::cout << std::endl;
+            std::cout << denominator << std::endl;
+        }
+        else
+        {
+            int denominator1 = abs(denominator);
+            while(denominator1 > 0)
+            {
+                denominator1 /= 10;
+                flag++;
+            }
+            std::cout << numerator << std::endl;
+            for (int i = 0; i < flag; i++)
+            {
+                std::cout << '-';
+            }
+            std::cout << std::endl;
+            std::cout << denominator << std::endl;
+        }
+    }
+}
+int frac::getnumerator()
+{
+    return numerator;
+}
+int frac::getdenominator()
+{
+    return denominator;
+}
+int frac::getwholepart()
+{
+    return (numerator / denominator);
+}
+frac frac::operator+ (const frac &b) const 
+{ 
+    frac a = frac(numerator * b.denominator + b.numerator * denominator, denominator * b.denominator);
+    return a.reduction();
+}
+frac frac::operator+ (const int &b) const
+{
+    frac a = frac(numerator + denominator * b, denominator);
+    return a.reduction();
+}
+frac frac::operator- (const frac &b) const
+{
+    frac a = frac(numerator * b.denominator - b.numerator * denominator, denominator * b.denominator);
+    return a.reduction();
+}
+frac frac::operator- (const int &b) const
+{
+    frac a = frac(numerator - denominator * b, denominator);
+    return a.reduction();
+}
+frac frac::operator* (const frac &b) const
+{
+    frac a = frac(numerator * b.numerator, denominator * b.denominator);
+    return a.reduction();
+}
+frac frac::operator* (const int &b) const
+{
+    frac a = frac(numerator * b, denominator);
+    return a.reduction();
+}
+frac frac::operator/ (const frac &b) const
+{
+    frac a = frac(numerator * b.denominator, denominator * b.numerator);
+    return a.reduction();
+}
+frac frac::operator/ (const int &b) const
+{
+    frac a = frac(numerator, denominator * b);
+    return a.reduction();
+}
+frac operator+(const int &a, frac &b)
+{
+    frac c = frac(b.getnumerator() + b.getdenominator() * a, b.getdenominator());
+    return c.reduction();
+}
+frac operator-(const int &a, frac &b)
+{
+    frac c = frac(b.getdenominator() * a - b.getnumerator(), b.getdenominator());
+    return c.reduction();
+}
+frac operator*(const int &a, frac &b)
+{
+    frac c = frac(b.getnumerator() * a, b.getdenominator());
+    return c.reduction();
+}
+frac operator/(const int &a, frac &b)
+{
+    frac c = frac(b.getdenominator() * a, b.getnumerator());
+    return c.reduction();
 }
