@@ -97,14 +97,14 @@ void frac::printfrac ()
                 denominator1 /= 10;
                 flag++;
             }
-            std::cout << ' ' << abs(numerator) << std::endl;
-            std::cout << '-';
+            std::cout << ' ' << ' ' << abs(numerator) << std::endl;
+            std::cout << '-' << ' ';
             for (int i = 0; i < flag; i++)
             {
                 std::cout << '-';
             }
             std::cout << std::endl;
-            std::cout << ' ' << denominator << std::endl;
+            std::cout << ' ' << ' ' << denominator << std::endl;
         }
     } 
     if ((numerator > 0) && (denominator != 1)) 
@@ -146,7 +146,6 @@ void frac::printfrac ()
 }
 int frac::getnumerator()
 {   
-    numerator = numerator % denominator;
     return numerator;
 }
 int frac::getdenominator()
