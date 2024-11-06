@@ -77,7 +77,7 @@ void frac::printfrac ()
         }
         else
         {
-            std::cout << whole_part(numerator, denominator) << " and " << abs(numerator) << "/" << denominator;
+            std::cout << whole_part(numerator, denominator) << " and " << (abs(numerator) % denominator) << "/" << denominator;
         }
     }
 }
