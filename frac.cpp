@@ -69,78 +69,15 @@ void frac::printfrac ()
     {
         std::cout << numerator << std::endl;
     }
-    if ((numerator < 0) && (denominator != 1))
+    if ((numerator != 0) && (denominator != 1))
     {
-        int flag = 0;
-        if (abs(numerator) > abs(denominator))
+        if (whole_part(numerator, denominator) == 0)
         {
-            int numerator1 = abs(numerator);
-            while(numerator1 > 0)
-            {
-                numerator1 /= 10;
-                flag++;
-            }
-            std::cout << ' ' << ' ' << abs(numerator) << std::endl;
-            std::cout << '-' << ' ';
-            for (int i = 0; i < flag; i++)
-            {
-                std::cout << '-';
-            }
-            std::cout << std::endl;
-            std::cout << ' ' << ' ' << denominator << std::endl;
+            std::cout << numerator << "/" << denominator;
         }
         else
         {
-            int denominator1 = abs(denominator);
-            while(denominator1 > 0)
-            {
-                denominator1 /= 10;
-                flag++;
-            }
-            std::cout << ' ' << ' ' << abs(numerator) << std::endl;
-            std::cout << '-' << ' ';
-            for (int i = 0; i < flag; i++)
-            {
-                std::cout << '-';
-            }
-            std::cout << std::endl;
-            std::cout << ' ' << ' ' << denominator << std::endl;
-        }
-    } 
-    if ((numerator > 0) && (denominator != 1)) 
-    {
-        int flag = 0;
-        if (abs(numerator) > abs(denominator))
-        {
-            int numerator1 = abs(numerator);
-            while(numerator1 > 0)
-            {
-                numerator1 /= 10;
-                flag++;
-            }
-            std::cout << numerator << std::endl;
-            for (int i = 0; i < flag; i++)
-            {
-                std::cout << '-';
-            }
-            std::cout << std::endl;
-            std::cout << denominator << std::endl;
-        }
-        else
-        {
-            int denominator1 = abs(denominator);
-            while(denominator1 > 0)
-            {
-                denominator1 /= 10;
-                flag++;
-            }
-            std::cout << numerator << std::endl;
-            for (int i = 0; i < flag; i++)
-            {
-                std::cout << '-';
-            }
-            std::cout << std::endl;
-            std::cout << denominator << std::endl;
+            std::cout << whole_part(numerator, denominator) << " and " << abs(numerator) << "/" << denominator;
         }
     }
 }
