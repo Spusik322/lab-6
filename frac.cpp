@@ -65,11 +65,11 @@ void frac::printfrac ()
     {
         std::cout << 0 << std::endl;
     }
-    if (denominator == 1)
+    else if (denominator == 1)
     {
         std::cout << numerator << std::endl;
     }
-    if ((numerator != 0) && (denominator != 1))
+    else if ((numerator != 0) && (denominator != 1))
     {
         if (whole_part(numerator, denominator) == 0)
         {
